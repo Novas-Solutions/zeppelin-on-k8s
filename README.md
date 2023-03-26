@@ -6,7 +6,7 @@ https://zeppelin.apache.org/docs/0.10.0/quickstart/kubernetes.html
 
  Flow Diagram: 
 
-
+https://lucid.app/lucidchart/74cdd090-afdc-4ca8-a5f8-63bdc89d2079/edit?viewport_loc=-149%2C37%2C1365%2C687%2C0_0&invitationId=inv_df25a0f9-9cd4-441a-9d86-5da36590e078
 
 
 Key benefits of Spark + Zeppelin + Kubernetes are
