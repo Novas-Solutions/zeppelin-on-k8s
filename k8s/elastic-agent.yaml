@@ -1,0 +1,67 @@
+apiVersion: agent.k8s.elastic.co/v1alpha1
+kind: Agent
+metadata:
+  annotations:
+    association.k8s.elastic.co/fs-conf: '{"authSecretName":"-","authSecretKey":"","isServiceAccount":false,"caCertProvided":true,"caSecretName":"elastic-agent-agent-fleetserver-ca","url":"https://eck-fleet-server-agent-http.default.svc:8220","version":"8.6.1"}'
+    association.k8s.elastic.co/kb-conf: '{"authSecretName":"elastic-agent-agent-kb-user","authSecretKey":"default-elastic-agent-agent-kb-user","isServiceAccount":false,"caCertProvided":false,"caSecretName":"","url":"http://eck-kibana-kb-http.default.svc:5601","version":"8.6.1"}'
+    fleet.eck.k8s.elastic.co/token: d564470f-ae7b-451f-affd-9a6dda553969
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"agent.k8s.elastic.co/v1alpha1","kind":"Agent","metadata":{"annotations":{},"name":"elastic-agent","namespace":"default"},"spec":{"daemonSet":{"podTemplate":{"spec":{"automountServiceAccountToken":true,"containers":[{"env":[{"name":"NODE_NAME","valueFrom":{"fieldRef":{"fieldPath":"spec.nodeName"}}}],"name":"agent","securityContext":{"runAsUser":0}}],"hostAliases":[{"hostnames":["kube-master-1"],"ip":"172.21.0.227"},{"hostnames":["kube-worker-1"],"ip":"172.21.0.238"},{"hostnames":["kube-worker-2"],"ip":"172.21.0.239"}],"serviceAccountName":"elastic-agent","tolerations":[{"effect":"NoSchedule","key":"node-role.kubernetes.io/master"}]}}},"fleetServerRef":{"name":"eck-fleet-server"},"kibanaRef":{"name":"eck-kibana"},"mode":"fleet","policyID":"c3edc170-ade8-11ed-85c3-012048d9cc1b","version":"8.6.1"}}
+  creationTimestamp: "2023-02-16T12:13:53Z"
+  generation: 3
+  name: elastic-agent
+  namespace: default
+  resourceVersion: "11613365"
+  uid: 011ea1bf-55c7-4602-a0b6-ae26e8d19046
+spec:
+  daemonSet:
+    podTemplate:
+      metadata:
+        creationTimestamp: null
+      spec:
+        automountServiceAccountToken: true
+        containers:
+        - env:
+          - name: NODE_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          name: agent
+          securityContext:
+            runAsUser: 0
+        hostAliases:
+        - hostnames:
+          - kube-master-1
+          ip: 172.21.0.227
+        - hostnames:
+          - kube-worker-1
+          ip: 172.21.0.238
+        - hostnames:
+          - kube-worker-2
+          ip: 172.21.0.239
+        serviceAccountName: elastic-agent
+        tolerations:
+        - effect: NoSchedule
+          key: node-role.kubernetes.io/master
+    updateStrategy: {}
+  fleetServerRef:
+    name: eck-fleet-server
+  http:
+    service:
+      metadata: {}
+      spec: {}
+    tls:
+      certificate: {}
+  kibanaRef:
+    name: eck-kibana
+  mode: fleet
+  policyID: c3edc170-ade8-11ed-85c3-012048d9cc1b
+  version: 8.6.1
+status:
+  availableNodes: 2
+  expectedNodes: 3
+  fleetServerAssociationStatus: Established
+  health: yellow
+  kibanaAssociationStatus: Established
+  observedGeneration: 3
+  version: 8.6.1

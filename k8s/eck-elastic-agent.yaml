@@ -1,0 +1,71 @@
+apiVersion: agent.k8s.elastic.co/v1alpha1
+kind: Agent
+metadata:
+  annotations:
+    association.k8s.elastic.co/fs-conf: '{"authSecretName":"-","authSecretKey":"","isServiceAccount":false,"caCertProvided":true,"caSecretName":"eck-elastic-agent-agent-fleetserver-ca","url":"https://eck-fleet-server-agent-http.default.svc:8220","version":"8.6.1"}'
+    association.k8s.elastic.co/kb-conf: '{"authSecretName":"eck-elastic-agent-agent-kb-user","authSecretKey":"default-eck-elastic-agent-agent-kb-user","isServiceAccount":false,"caCertProvided":false,"caSecretName":"","url":"http://eck-kibana-kb-http.default.svc:5601","version":"8.6.1"}'
+    fleet.eck.k8s.elastic.co/token: 952341e8-174a-4bd7-9828-7274d043b63c
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"agent.k8s.elastic.co/v1alpha1","kind":"Agent","metadata":{"annotations":{},"name":"eck-elastic-agent","namespace":"default"},"spec":{"daemonSet":{"podTemplate":{"spec":{"automountServiceAccountToken":true,"containers":[{"name":"agent","volumeMounts":[{"mountPath":"/var/lib/docker/containers","name":"varlibdockercontainers"},{"mountPath":"/var/log/containers","name":"varlogcontainers"},{"mountPath":"/var/log/pods","name":"varlogpods"},{"mountPath":"/var/run/docker.sock","name":"dockersock"}]}],"securityContext":{"runAsUser":0},"serviceAccountName":"elastic-agent","volumes":[{"hostPath":{"path":"/var/lib/docker/containers"},"name":"varlibdockercontainers"},{"hostPath":{"path":"/var/log/containers"},"name":"varlogcontainers"},{"hostPath":{"path":"/var/log/pods"},"name":"varlogpods"},{"hostPath":{"path":"/var/run/docker.sock"},"name":"dockersock"}]}}},"fleetServerRef":{"name":"eck-fleet-server"},"kibanaRef":{"name":"eck-kibana"},"mode":"fleet","version":"8.6.1"}}
+  creationTimestamp: "2023-02-16T07:24:53Z"
+  generation: 2
+  name: eck-elastic-agent
+  namespace: default
+  resourceVersion: "11613828"
+  uid: 15cb8d69-5f9c-44a2-8149-09b2f5d5689a
+spec:
+  daemonSet:
+    podTemplate:
+      metadata:
+        creationTimestamp: null
+      spec:
+        automountServiceAccountToken: true
+        containers:
+        - name: agent
+          resources: {}
+          volumeMounts:
+          - mountPath: /var/lib/docker/containers
+            name: varlibdockercontainers
+          - mountPath: /var/log/containers
+            name: varlogcontainers
+          - mountPath: /var/log/pods
+            name: varlogpods
+          - mountPath: /var/run/docker.sock
+            name: dockersock
+        securityContext:
+          runAsUser: 0
+        serviceAccountName: elastic-agent
+        volumes:
+        - hostPath:
+            path: /var/lib/docker/containers
+          name: varlibdockercontainers
+        - hostPath:
+            path: /var/log/containers
+          name: varlogcontainers
+        - hostPath:
+            path: /var/log/pods
+          name: varlogpods
+        - hostPath:
+            path: /var/run/docker.sock
+          name: dockersock
+    updateStrategy: {}
+  fleetServerRef:
+    name: eck-fleet-server
+  http:
+    service:
+      metadata: {}
+      spec: {}
+    tls:
+      certificate: {}
+  kibanaRef:
+    name: eck-kibana
+  mode: fleet
+  version: 8.6.1
+status:
+  availableNodes: 1
+  expectedNodes: 2
+  fleetServerAssociationStatus: Established
+  health: yellow
+  kibanaAssociationStatus: Established
+  observedGeneration: 2
+  version: 8.6.1
