@@ -30,14 +30,14 @@ Steps
 
     3. Create container image using docker for spark-application and zeppelin. The official docker image isn't compactible with the k8s cluster.
 
-    # docker build -t zeppelin-server:0.10.0 -f /scripts/docker/zeppelin-server/Dockerfile
-    # docker tag zeppelin-server:0.10.0 container-registry.com/zeppelin-server:0.10.0 && docker push container-registry.com/zeppelin-server:0.10.0
+    # docker build -t zeppelin-server -f /scripts/docker/zeppelin-server/Dockerfile
+    # docker tag zeppelin-server container-registry.com/zeppelin-server && docker push container-registry.com/zeppelin-server
 
-    # docker build -t zeppelin-interpreter:0.10.0 -f /scripts/docker/zeppelin-interpreter/Dockerfile
-    # docker tag zeppelin-interpreter:0.10.0 container-registry.com/zeppelin-server:0.10.0 && docker push container-registry.com/zeppelin-interpreter:0.10.0
+    # docker build -t zeppelin-interpreter -f /scripts/docker/zeppelin-interpreter/Dockerfile
+    # docker tag zeppelin-interpreter container-registry.com/zeppelin-server && docker push container-registry.com/zeppelin-interpreter
 
-    # docker build -t spark-app:3.2.0 -f spark.Dockerfile
-    # docker tag spark-app:3.2.0 container-registry.com/spark-app:3.2.0 && docker push container-registry.com/spark-app:3.2.0 
+    # docker build -t spark-app -f spark.Dockerfile
+    # docker tag spark-app container-registry.com/spark-app && docker push container-registry.com/spark-app
 
     4. Deploy the zeppelin on Kubernetes. 
 
